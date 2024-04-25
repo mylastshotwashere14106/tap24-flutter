@@ -1,5 +1,7 @@
+import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tap2024/settings/value_listener.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,19 +10,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Topicos Avanzados'),),
-      drawer: menuLateral(),
+      drawer: menuLateral(context),
     );
   }
 
-  Widget menuLateral(){
+  Widget menuLateral(BuildContext context){
     return Drawer(
       child: Container(
-        decoration: const BoxDecoration(
+        /*decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage('assets/gwf2.webp')
           )
-        ),
+        ),*/
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
@@ -33,8 +35,16 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               title: Text('Login'),
               subtitle: Text('Direccion de youtube'),
-              tileColor: Colors.black,
-            
+              leading: Icon(Icons.key),
+              trailing: Icon(Icons.chevron_right),
+              onTap: ()=>Navigator.pushNamed(context, "/login2"),
+              //tileColor: Colors.black,
+            ),
+            DayNightSwitcher(
+              isDarkModeEnabled: ValueListener.isDark.value, 
+              onStateChanged: (isDarkModeEnabled) {
+                ValueListener.isDark.value = isDarkModeEnabled;
+              },
             )
           ],
         ),
