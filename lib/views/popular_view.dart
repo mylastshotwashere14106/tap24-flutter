@@ -5,7 +5,7 @@ import 'package:tap2024/models/popular_model.dart';
 class PopularView extends StatelessWidget {
   PopularView({super.key,this.popularModel});
 
-  PopularModel? popularModel;
+  VideosModel? popularModel;
 
   @override
   Widget build(BuildContext context) {
